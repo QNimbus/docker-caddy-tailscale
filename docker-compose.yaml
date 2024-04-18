@@ -1,0 +1,31 @@
+---
+
+services:
+  caddy:
+    hostname: web # This will dictate the hostname on your Tailnet. Comment out to get a random 12 hexadecimal hostname.
+    restart: unless-stopped
+    build: .
+    env_file:
+      - .env
+    environment:
+      # Setting the env variables below will override variables set in the .env file - the 'environment' array has precedence over the .env file
+      # If TS_AUTH_KEY is not provided, an auth link will be output to the log - in that case set TS_VERBOSE to 1
+      CADDY_PORT: 8080
+      TS_VERBOSE: 0
+      TS_AUTH_KEY: ~
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    # Configure 'networks' so that the sidecar container has access to the containers that need proxying
+    # networks:
+    #   - proxy-network
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+# Configure 'networks' so that the sidecar container has access to the containers that need proxying
+# networks:
+#   proxy-network:
+#     external: true
