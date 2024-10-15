@@ -1,5 +1,63 @@
-LICENSE
-README.md
+# Version control
+.git
 .gitignore
+
+# Docker-related files
+Dockerfile
+docker-compose.yml
+docker-compose.yaml
 .dockerignore
-.env*
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# Environment variables
+.env
+.env.*
+
+# Editor directories and files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Node.js (if you decide to add any Node.js components in the future)
+node_modules
+npm-debug.log
+
+# Python (if you decide to add any Python components in the future)
+__pycache__
+*.py[cod]
+
+# Compiled binaries (if any)
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Caddy specific
+Caddyfile.local
+
+# Tailscale specific
+tailscale.state
+
+# Miscellaneous
+*.pem
+*.key
+
+# Local development files
+dev/
+test/

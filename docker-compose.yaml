@@ -2,17 +2,21 @@
 
 services:
   caddy:
-    hostname: web # This will dictate the hostname on your Tailnet. Comment out to get a random 12 hexadecimal hostname.
+    hostname: pihole # This will dictate the hostname on your Tailnet. Comment out to get a random 12 hexadecimal hostname.
     restart: unless-stopped
-    build: .
+    image: tailscale-caddy
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file:
       - .env
     environment:
       # Setting the env variables below will override variables set in the .env file - the 'environment' array has precedence over the .env file
       # If TS_AUTH_KEY is not provided, an auth link will be output to the log - in that case set TS_VERBOSE to 1
-      CADDY_PORT: 8080
       TS_VERBOSE: 0
+      TS_PORT: ~
       TS_AUTH_KEY: ~
+      TS_EXTRA_ARGS: ~
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
